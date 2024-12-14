@@ -1,10 +1,8 @@
 
 import {Simon} from "./class_simon.js";
 import {Colors} from "./colors.js"
-
-const simonElement = document.getElementsByClassName('simon')[0]
-
-const simons = [new Simon(simonElement)]
+import {player} from "/src/audio.js"
+const simons = []
 
 const DIFFICULTY = 100;
 const TIME = 659 * 4
@@ -55,7 +53,19 @@ function loop() {
     update()
 }
 
-export function main() {
+function setFirst() {
+    const simonElement = document.getElementsByClassName('simon')[0]
+    simons.push(new Simon(simonElement))
+}
+
+function start() {
+    setFirst()
     update()
+    player.start()
     setInterval(loop, TIME)
+}
+
+
+export function main() {
+    document.addEventListener('click', start)
 }

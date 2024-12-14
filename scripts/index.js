@@ -1,4 +1,4 @@
 
 import {main} from './game.js';
 
-main()
+document.addEventListener('DOMContentLoaded', main)
