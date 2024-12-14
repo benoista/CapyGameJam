@@ -58,6 +58,7 @@ function generateOtherColorsDaltonism(color) {
 
 function update() {
 
+    displayScore()
     let color = Colors.generateRandomColor()
     let otherColors = generateOtherColors(color)
 
@@ -139,7 +140,7 @@ function resizeSimon(simon) {
 
 function displayScore() {
     const scoreElement = document.querySelector('.score')
-    scoreElement.textContent = Game.SCORE.toString()
+    scoreElement.textContent = "Your score : " + Game.SCORE.toString()
 }
 
 document.getElementById('play')?.addEventListener('click', start);
