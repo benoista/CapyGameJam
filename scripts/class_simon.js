@@ -64,11 +64,15 @@ export class Simon {
     }
 
     #validate() {
+        console.log(this);
         this.#validated = true;
+        this.#setAllColor('rgb(67, 242, 33)');
     }
 
     #fail() {
+        console.log(this);
         this.#failed = true;
+        this.#setAllColor('rgb(235, 40, 40)');
     }
 
     /**
@@ -84,6 +88,14 @@ export class Simon {
         choiceElement.style.backgroundColor = color
         //choiceElement[0].style.backgroundColor = color
         //choiceElement[1].style.backgroundColor = color
+    }
+
+    #setAllColor(color) {
+        this.#setElementColor('e0', color);
+        this.#setElementColor('e1', color);
+        this.#setElementColor('e2', color);
+        this.#setElementColor('e3', color);
+        this.#setElementColor('e4', color);
     }
 
     /**
@@ -136,9 +148,9 @@ export class Simon {
 
     #setCallbacks(choice) {
 
-        this.#getChoiceElement(choice).onclick = this.#validate;
+        this.#getChoiceElement(choice).onclick = this.#validate.bind(this);
 
-        const setOthers = element => this.#getChoiceElement(element).onclick = this.#fail;
+        const setOthers = element => this.#getChoiceElement(element).onclick = this.#fail.bind(this);
         this.#getOthers(choice).forEach(setOthers);
 
     }

@@ -16,23 +16,21 @@ function generateChoice() {
 
 function generateOtherColors(color) {
     return [
-        Colors.generateColorVariation(color, 50 * DIFFICULTY),
-        Colors.generateColorVariation(color, 50 * DIFFICULTY),
-        Colors.generateColorVariation(color, 50 * DIFFICULTY)
+        Colors.generateColorVariation(color, 20 * DIFFICULTY),
+        Colors.generateColorVariation(color, 20 * DIFFICULTY),
+        Colors.generateColorVariation(color, 20 * DIFFICULTY)
     ]
 }
 
 function update() {
 
-    const choice = generateChoice()
     const color = Colors.generateRandomColor()
     const otherColors = generateOtherColors(color)
 
     setAnimColor(color)
 
-    const setChoice = simon => simon.setChoice(choice, color, otherColors)
+    const setChoice = simon => simon.setChoice(generateChoice(), color, otherColors)
     simons.forEach(setChoice)
-
 }
 
 function setAnimColor(color) {
@@ -40,7 +38,6 @@ function setAnimColor(color) {
     root.style.setProperty('--shadow-color', color);
     //root.style.setProperty('--border-color', Colors.editColor(color, 150));
 }
-
 
 function split() {
     length = simons.length
@@ -58,10 +55,18 @@ function anyFailed() {
 }
 
 function loop() {
+
     if (allValidated()) SCORE++
     else if (anyFailed()) split()
     else SCORE--
+
+    reset()
     update()
+}
+
+function reset() {
+    const reset = simon => simon.reset()
+    simons.forEach(reset)
 }
 
 function setFirst() {
