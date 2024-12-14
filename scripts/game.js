@@ -6,6 +6,24 @@ import * as Tone from "tone";
 const simons = []
 
 
+const SIM_SIZES = [
+    'simSize1',
+    'simSize2',
+    'simSize4',
+    'simSize8',
+    'simSize16',
+    'simSize32'
+]
+
+const SIZES = [
+    'size1',
+    'size2',
+    'size4',
+    'size8',
+    'size16',
+    'size32'
+]
+
 class Game {
 
     static DIFFICULTY = 4;
@@ -63,6 +81,9 @@ function split() {
     for (let i = 0; i < length; i++) simons.push(simons[0].clone())
     Game.LEVEL++
     simons.forEach(resizeSimon);
+    document.getElementsByClassName('grid')[0].classList.remove(SIZES[Game.LEVEL-1])
+    document.getElementsByClassName('grid')[0].classList.add(SIZES[Game.LEVEL])
+
 }
 
 function allValidated() {
