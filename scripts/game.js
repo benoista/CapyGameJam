@@ -6,24 +6,6 @@ import * as Tone from "tone";
 const simons = []
 
 
-const SIM_SIZES = [
-    'simSize1',
-    'simSize2',
-    'simSize4',
-    'simSize8',
-    'simSize16',
-    'simSize32'
-]
-
-const SIZES = [
-    'size1',
-    'size2',
-    'size4',
-    'size8',
-    'size16',
-    'size32'
-]
-
 class Game {
 
     static DIFFICULTY = 4;
@@ -32,10 +14,6 @@ class Game {
     static LEVEL = 0
     static DALTONISME = false
 }
-
-
-
-
 
 function generateChoice() {
     return ['e1', 'e2', 'e3', 'e4'][Math.floor(Math.random() * 4)];
@@ -57,6 +35,8 @@ function generateOtherColorsDaltonism(color) {
 }
 
 function update() {
+
+    displayScore()
 
     let color = Colors.generateRandomColor()
     let otherColors = generateOtherColors(color)
@@ -83,9 +63,6 @@ function split() {
     for (let i = 0; i < length; i++) simons.push(simons[0].clone())
     Game.LEVEL++
     simons.forEach(resizeSimon);
-    document.getElementsByClassName('grid')[0].classList.remove(SIZES[Game.LEVEL-1])
-    document.getElementsByClassName('grid')[0].classList.add(SIZES[Game.LEVEL])
-
 }
 
 function allValidated() {
@@ -133,13 +110,17 @@ async function startMusic() {
 }
 
 function resizeSimon(simon) {
-    simon.parent.classList.remove(SIM_SIZES[Game.LEVEL-1])
-    simon.parent.classList.add(SIM_SIZES[Game.LEVEL])
+    simon.parent.classList.remove('simSize' + getCount(-1))
+    simon.parent.classList.add('simSize' + getCount())
 }
 
 function displayScore() {
     const scoreElement = document.querySelector('.score')
     scoreElement.textContent = Game.SCORE.toString()
+}
+
+function getCount(n = 0) {
+    return Math.pow((Game.LEVEL + n), 2)
 }
 
 document.getElementById('play')?.addEventListener('click', start);
