@@ -9,7 +9,7 @@ export class Simon {
      * Create a new Simon in the specified parent
      * @param {HTMLDivElement} parent
      */
-    constructor(parent) {
+    constructor(parent, row, column) {
         this.#parent = parent;
         this.#validated = false;
         this.#failed = false;

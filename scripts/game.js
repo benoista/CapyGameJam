@@ -33,10 +33,6 @@ class Game {
     static DALTONISME = false
 }
 
-
-
-
-
 function generateChoice() {
     return ['e1', 'e2', 'e3', 'e4'][Math.floor(Math.random() * 4)];
 }
@@ -59,6 +55,7 @@ function generateOtherColorsDaltonism(color) {
 function update() {
 
     displayScore()
+
     let color = Colors.generateRandomColor()
     let otherColors = generateOtherColors(color)
 
@@ -134,13 +131,17 @@ async function startMusic() {
 }
 
 function resizeSimon(simon) {
-    simon.parent.classList.remove(SIM_SIZES[Game.LEVEL-1])
-    simon.parent.classList.add(SIM_SIZES[Game.LEVEL])
+    simon.parent.classList.remove('simSize' + getCount(-1))
+    simon.parent.classList.add('simSize' + getCount())
 }
 
 function displayScore() {
     const scoreElement = document.querySelector('.score')
-    scoreElement.textContent = "Your score : " + Game.SCORE.toString()
+    scoreElement.textContent = Game.SCORE.toString()
+}
+
+function getCount(n = 0) {
+    return Math.pow((Game.LEVEL + n), 2)
 }
 
 document.getElementById('play')?.addEventListener('click', start);

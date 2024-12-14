@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Option</title>
+    <link rel="stylesheet" href="option.css">
+</head>
+<body>
+
+    <div class="check">
+        <input type="checkbox" id="dalto" name="dalto" />
+        <input type="checkbox" id="hardcore" name="hardcore" />
+    </div>
+
+    <div class="volume-control">
+        <label for="volume-slider">Volume :</label>
+        <input type="range" id="volume-slider" min="0" max="100" value="50">
+        <span id="volume-value">100%</span>
+    </div>
+
+    <audio id="audio-element" src="sound.mp3" loop></audio>
+    <button id="play-pause">Play</button>
+
+    <div class="nav">
+        <a href="menu.html"> ////////////////////////////////////////  </a>
+    </div>
+
+
+    <script src="sound.js"></script>
+</body>
+</html>
