@@ -142,8 +142,9 @@ body {
     z-index: 1;
 }
 
-.box-e2 img {
+.box-e2 img, .box-e1 img, .box-e3 img, .box-e4 img {
     width: 160px;
     height: auto;
     z-index: 2;
+    position: absolute;
 }
