@@ -1,58 +1,39 @@
 body{
-    background-color: #9cd0ad;
+    background:url("menu-pic/background.png");
     height: 100vh;
     overflow: hidden;
-    padding: 2rem;
+    background-size: cover;
+    background-size: 100%;
 }
 
-.header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin:2rem;
-}
 
-.header h1{
-    background-color: #9cd0ad;
-    z-index: 1;
-    position: absolute;
-    font-size: 7rem;
-
-}
-
-img{
-    z-index: 0;
-    width: 50%;
-    height: 50%;
-}
 
 .content {
+    position: absolute;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    gap: 20px;
-    margin: 6rem;
+    margin-top: 22rem;
+    margin-left: 40rem;
 }
 
-.button {
-    padding: 15px 30px;
-    font-size: 1.5rem;
+.content button {
+    background: transparent;
     border: none;
-    border-radius: 5px;
-    background-color: #9CD0AD;
-    color: white;
+    padding: 0;
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: #78A87C;
+.content button img {
+    height: 9rem;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
-.play {
-    background-color: #4CAF50;
+.play button img:hover {
+    content: url('menu-pic/play-hover.png');
 }
 
-.options {
-    background-color: #008CBA;
+.option button img:hover {
+    content: url('menu-pic/option-hover.png');
 }
