@@ -39,6 +39,10 @@ export function setVolume(volume: number) {
     player.volume.value = volume;
 }
 
+export function playClicked() {
+    player.start();
+}
+
 
 
 
