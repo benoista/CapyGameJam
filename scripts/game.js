@@ -9,6 +9,7 @@ const simons = []
 const DIFFICULTY = 4;
 const TIME = 659 * DIFFICULTY
 let SCORE = 0
+let daltonism = false
 
 function generateChoice() {
     return ['e1', 'e2', 'e3', 'e4'][Math.floor(Math.random() * 4)];
@@ -21,12 +22,24 @@ function generateOtherColors(color) {
         Colors.generateColorVariation(color, 50 * DIFFICULTY)
     ]
 }
+function generateOtherColorsDaltonism(color) {
+    return [
+        Colors.generateColorVariationDaltonism(color, 50 * DIFFICULTY),
+        Colors.generateColorVariationDaltonism(color, 50 * DIFFICULTY),
+        Colors.generateColorVariationDaltonism(color, 50 * DIFFICULTY)
+    ]
+}
 
 function update() {
 
     const choice = generateChoice()
-    const color = Colors.generateRandomColor()
-    const otherColors = generateOtherColors(color)
+    let color = Colors.generateRandomColor()
+    let otherColors = generateOtherColors(color)
+
+    if (daltonism){
+        color = Colors.generateRandomColorDaltonism()
+        otherColors = generateOtherColorsDaltonism(color)
+    }
 
     setAnimColor(color)
 
