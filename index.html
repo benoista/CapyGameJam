@@ -110,9 +110,23 @@
         background: var(--shadow-color);
         border-radius: 100%;
         border: 2px solid var(--border-color);
-        z-index: 999;
+        z-index: 998;
         animation: rotate-shadow 0.5s linear infinite;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button {
+        position: absolute;
+        width: 38%;
+        height: 40%;
+        align-self: center;
+        justify-self: center;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 999;
+        background-color: transparent;
+        border: none;
     }
 
     .center-hide {
@@ -151,8 +165,8 @@
         <div class="cube e4"></div>
         <div class="e0"></div>
         <div class="center-hide"></div>
+        <button id="play">Go</button>
     </div>
 </div>
-<button id="play">Start</button>
 </body>
 </html>
