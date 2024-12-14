@@ -7,6 +7,16 @@ const player = new Tone.Player({
     autostart: true,
 });
 
+const UIAudio = new Tone.Sampler({
+    urls: {
+        "C4": "C4.mp3",
+        "D#4": "Ds4.mp3",
+        "F#4": "Fs4.mp3",
+        "A4": "A4.mp3",
+    },
+    release: 1,
+    baseUrl: "/assets/",
+}).toDestination();
 
 
 document.getElementById('play')?.addEventListener('click', async () => {
@@ -23,12 +33,12 @@ document.getElementById('pause')?.addEventListener('click', () => {
     player.stop();
 });
 
-export function increasePlaybackRate() {
-    player.playbackRate += 0.1;
+export function increasePlaybackRate(value: number) {
+    player.playbackRate += value;
 }
 
-export function decreasePlaybackRate() {
-    player.playbackRate -= 0.1;
+export function decreasePlaybackRate(value: number) {
+    player.playbackRate -= value;
 }
 
 export function resetPlaybackRate() {
