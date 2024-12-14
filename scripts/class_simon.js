@@ -9,10 +9,12 @@ export class Simon {
      * Create a new Simon in the specified parent
      * @param {HTMLDivElement} parent
      */
-    constructor(parent, row, column) {
+    constructor(parent) {
+
         this.#parent = parent;
         this.#validated = false;
         this.#failed = false;
+
     }
 
     get isValidated() {
@@ -179,7 +181,7 @@ export class Simon {
      */
     clone() {
         parent = this.#parent.cloneNode(true)
-        document.body.appendChild(parent);
+        document.getElementsByClassName('grid')[0].appendChild(parent);
         return new Simon(parent);
     }
 
