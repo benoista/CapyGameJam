@@ -2,10 +2,12 @@
 import {Simon} from "./class_simon.js";
 import {Colors} from "./colors.js"
 import {player} from "/src/audio.js"
+import * as Tone from "tone";
 const simons = []
 
-const DIFFICULTY = 100;
-const TIME = 659 * 4
+
+const DIFFICULTY = 2;
+const TIME = 659 * DIFFICULTY
 let SCORE = 0
 
 function generateChoice() {
@@ -14,9 +16,9 @@ function generateChoice() {
 
 function generateOtherColors(color) {
     return [
-        Colors.generateColorVariation(color, DIFFICULTY),
-        Colors.generateColorVariation(color, DIFFICULTY),
-        Colors.generateColorVariation(color, DIFFICULTY)
+        Colors.generateColorVariation(color, 25 * DIFFICULTY),
+        Colors.generateColorVariation(color, 25 * DIFFICULTY),
+        Colors.generateColorVariation(color, 25 * DIFFICULTY)
     ]
 }
 
@@ -61,11 +63,14 @@ function setFirst() {
 function start() {
     setFirst()
     update()
-    player.start()
+    setTimeout(startMusic, 900)
     setInterval(loop, TIME)
 }
 
-
-export function main() {
-    document.addEventListener('click', start)
+async function startMusic() {
+    await Tone.start();
+    player.playbackRate = 2 / DIFFICULTY
+    player.toDestination().start();
 }
+
+document.getElementById('play')?.addEventListener('click', start);

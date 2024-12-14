@@ -1,25 +1,10 @@
 import * as Tone from 'tone';
 
 
-const player = new Tone.Player({
+export const player = new Tone.Player({
     url: "/audio/music.mp3",
     loop: true,
     autostart: true,
-});
-
-
-document.getElementById('play')?.addEventListener('click', async () => {
-    await Tone.start();
-    player.playbackRate = 2;
-    player.toDestination().start();
-});
-
-document.getElementById('stop')?.addEventListener('click', () => {
-    player.stop();
-});
-
-document.getElementById('pause')?.addEventListener('click', () => {
-    player.stop();
 });
 
 export function increasePlaybackRate(value) {
