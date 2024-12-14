@@ -11,12 +11,17 @@ export class Colors {
 
     // Function to generate color variations
     static generateColorVariation(baseColor, range) {
-        const [r, g, b] = baseColor.match(/\d+/g).map(Number);
         const variation = Math.floor(Math.random() * (range * 2)) - range
+        return this.editColor(baseColor, variation)
+    }
+
+    // Function to generate color variations
+    static editColor(baseColor, value) {
+        const [r, g, b] = baseColor.match(/\d+/g).map(Number);
         const newColor = [
-            Math.min(255, Math.max(0, r + variation)),
-            Math.min(255, Math.max(0, g + variation)),
-            Math.min(255, Math.max(0, b + variation))
+            Math.min(255, Math.max(0, r + value)),
+            Math.min(255, Math.max(0, g + value)),
+            Math.min(255, Math.max(0, b + value))
         ];
         return `rgb(${newColor.join(', ')})`;
     }

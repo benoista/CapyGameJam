@@ -6,7 +6,7 @@ import * as Tone from "tone";
 const simons = []
 
 
-const DIFFICULTY = 2;
+const DIFFICULTY = 4;
 const TIME = 659 * DIFFICULTY
 let SCORE = 0
 
@@ -16,9 +16,9 @@ function generateChoice() {
 
 function generateOtherColors(color) {
     return [
-        Colors.generateColorVariation(color, 25 * DIFFICULTY),
-        Colors.generateColorVariation(color, 25 * DIFFICULTY),
-        Colors.generateColorVariation(color, 25 * DIFFICULTY)
+        Colors.generateColorVariation(color, 50 * DIFFICULTY),
+        Colors.generateColorVariation(color, 50 * DIFFICULTY),
+        Colors.generateColorVariation(color, 50 * DIFFICULTY)
     ]
 }
 
@@ -28,10 +28,19 @@ function update() {
     const color = Colors.generateRandomColor()
     const otherColors = generateOtherColors(color)
 
+    setAnimColor(color)
+
     const setChoice = simon => simon.setChoice(choice, color, otherColors)
     simons.forEach(setChoice)
 
 }
+
+function setAnimColor(color) {
+    const root = document.querySelector(':root')
+    root.style.setProperty('--shadow-color', color);
+    //root.style.setProperty('--border-color', Colors.editColor(color, 150));
+}
+
 
 function split() {
     length = simons.length
