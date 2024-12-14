@@ -30,6 +30,7 @@ class Game {
     static TIME = 659 * this.DIFFICULTY
     static SCORE = 0
     static LEVEL = 0
+    static DALTONISME = false
 }
 
 
@@ -47,12 +48,24 @@ function generateOtherColors(color) {
         Colors.generateColorVariation(color, 20 * Game.DIFFICULTY)
     ]
 }
+function generateOtherColorsDaltonism(color) {
+    return [
+        Colors.generateColorVariationDaltonism(color, 20 * Game.DIFFICULTY),
+        Colors.generateColorVariationDaltonism(color, 20 * Game.DIFFICULTY),
+        Colors.generateColorVariationDaltonism(color, 20 * Game.DIFFICULTY)
+    ]
+}
 
 function update() {
 
-    const color = Colors.generateRandomColor()
-    const otherColors = generateOtherColors(color)
+    let color = Colors.generateRandomColor()
+    let otherColors = generateOtherColors(color)
 
+    if (Game.DALTONISME) {
+        color = Colors.generateRandomColorDaltonism()
+        otherColors = generateOtherColorsDaltonism(color)
+    }
+    
     setAnimColor(color)
 
     const setChoice = simon => simon.setChoice(generateChoice(), color, otherColors)

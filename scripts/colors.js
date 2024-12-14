@@ -41,4 +41,37 @@ export class Colors {
         return `rgb(${newColor.join(', ')})`;
     }
 
+    static daltonianFriendlyColors = [
+        'rgb(0, 114, 178)',   // Strong Blue
+        'rgb(213, 94, 0)',    // Vermilion
+        'rgb(0, 158, 115)',   // Bluish Green
+        'rgb(230, 159, 0)',   // Orange
+        'rgb(86, 180, 233)',  // Sky Blue
+        'rgb(204, 121, 167)', // Reddish Purple
+        'rgb(240, 228, 66)',  // Yellow
+        'rgb(0, 0, 0)'        // Black
+    ];
+
+
+
+    // Function to generate a random color from the predefined palette
+    static generateRandomColorDaltonism() {
+        const randomIndex = Math.floor(Math.random() * this.daltonianFriendlyColors.length);
+        return this.daltonianFriendlyColors[randomIndex];
+    }
+
+    // Function to generate color variations in Daltonism MODE
+    static generateColorVariationDaltonism(baseColor) {
+        let variationColor;
+        do {
+            const randomIndex = Math.floor(Math.random() * this.daltonianFriendlyColors.length);
+            variationColor = this.daltonianFriendlyColors[randomIndex];
+        } while (variationColor === baseColor);
+        return variationColor;
+    }
+
+
+
+
+
 }
