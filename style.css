@@ -1,5 +1,5 @@
 body{
-    background:url("menu-pic/background.png");
+    background:url("pic/background.png");
     height: 100vh;
     overflow: hidden;
     background-size: cover;
@@ -31,9 +31,9 @@ body{
 }
 
 .play button img:hover {
-    content: url('menu-pic/play-hover.png');
+    content: url('pic/play-hover.png');
 }
 
 .option button img:hover {
-    content: url('menu-pic/option-hover.png');
+    content: url('pic/option-hover.png');
 }
