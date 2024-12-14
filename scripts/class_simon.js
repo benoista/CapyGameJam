@@ -1,20 +1,25 @@
-class Simon {
 
-    parent: HTMLDivElement
+export class Simon {
+
+    parent
 
     /**
      * Create a new Simon in the specified parent
      * @param {HTMLDivElement} parent
+     * @param row
+     * @param column
      */
-    constructor(parent: HTMLDivElement) {
+    constructor(parent, row, column) {
         this.parent = parent;
+        this.parent.style.row = row;
+        this.parent.style.column = column;
     }
 
     /**
      * The center element
      * @returns {HTMLDivElement}
      */
-    get e0(): HTMLDivElement {
+    get e0() {
         return this.#getElement('e0');
     }
 
@@ -22,7 +27,7 @@ class Simon {
      * The top-left element
      * @returns {HTMLDivElement}
      */
-    get e1(): HTMLDivElement {
+    get e1() {
         return this.#getElement('e1');
     }
 
@@ -30,7 +35,7 @@ class Simon {
      * The top-right element
      * @returns {HTMLDivElement}
      */
-    get e2(): HTMLDivElement {
+    get e2() {
         return this.#getElement('e2');
     }
 
@@ -38,7 +43,7 @@ class Simon {
      * The bottom-right element
      * @returns {HTMLDivElement}
      */
-    get e3(): HTMLDivElement {
+    get e3() {
         return this.#getElement('e3');
     }
 
@@ -46,26 +51,26 @@ class Simon {
      * The bottom-left element
      * @returns {HTMLDivElement}
      */
-    get e4(): HTMLDivElement {
+    get e4() {
         return this.#getElement('e4');
     }
 
     /**
-     * Get a child element from its tag
-     * @param tag
+     * Get a child element from its name
+     * @param name
      * @returns {Element}
      */
-    #getElement(tag: string): HTMLDivElement {
-        return this.parent.getElementsByTagName(tag)[0];
+    #getElement(name) {
+        return this.parent.getElementsByClassName(name)[0];
     }
 
     /**
-     * Set the color for an element from its tag
-     * @param tag
+     * Set the color for an element from its name
+     * @param name
      * @param color
      */
-    #setElementColor(tag: string, color: string): void {
-        switch (tag) {
+    #setElementColor(name, color) {
+        switch (name) {
             case 'e0': this.e0.style.backgroundColor = color; break;
             case 'e1': this.e1.style.backgroundColor = color; break;
             case 'e2': this.e2.style.backgroundColor = color; break;
@@ -74,7 +79,12 @@ class Simon {
         }
     }
 
-    #getOthers(choice: string): Array<string> {
+    /**
+     * Get the others sides from choice
+     * @param choice
+     * @returns {string[]}
+     */
+    #getOthers(choice) {
         const filter = (element) => element !== choice
         return ['e1', 'e2', 'e3', 'e4'].filter(filter)
     }
@@ -84,23 +94,23 @@ class Simon {
      * @param choice
      * @param color
      */
-    setChoiceColor(choice: string, color: string): void {
+    setChoiceColor(choice, color) {
         this.#setElementColor('e0', color);
         this.#setElementColor(choice, color);
     }
 
     /**
-     *
+     * Set the choice
      * @param choice
      * @param successCallback
      * @param failCallback
      */
-    setChoice(choice: string, successCallback: function, failCallback: function): void {
+    setChoice(choice, successCallback, failCallback) {
 
         this.#getElement(choice).onclick = successCallback;
 
-        const setOthers = element => element.onclick = failCallback;
-        this.#getOthers().forEach(setOthers);
+        const setOthers = element => this.#getElement(element).onclick = failCallback;
+        this.#getOthers(choice).forEach(setOthers);
     }
 
     /**
@@ -108,16 +118,25 @@ class Simon {
      * @param choice
      * @param colors
      */
-    setOtherColors(choice: string, colors: Array<string>): void {
+    setOtherColors(choice, colors) {
         const setColor = (element, index) => this.#setElementColor(element, colors[index])
-        this.#getOthers().forEach(setColor);
+        this.#getOthers(choice).forEach(setColor);
     }
 
     /**
      * Remove the simon
      */
-    remove(): void {
+    remove() {
         this.parent.removeChild(this.#getElement('simon'));
+    }
+
+    /**
+     * Remove the simon
+     */
+    clone(row, column) {
+        parent = this.parent.cloneNode(true)
+        document.body.appendChild(parent);
+        return new Simon(parent, row, column);
     }
 
 }
