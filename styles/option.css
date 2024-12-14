@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Borel&family=Kavoon&family=Noto+Sans+KR:wght@100..900&family=Orbitron:wght@400..900&family=Rubik+Bubbles&family=Sarina&family=Shantell+Sans:ital,wght,BNCE@0,300..800,-43;1,300..800,-43&family=Silkscreen:wght@400;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    background:url('pic/back-option.png');
+    background:url('../pic/back-option.png');
     overflow: hidden;
     background-size: cover;
     background-size: 100%;

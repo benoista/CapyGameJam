@@ -25,8 +25,32 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
+    grid-template-rows: auto;
+}
+
+.size1 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.size2{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.size4{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.size8{
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.size16{
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.size32{
+    grid-template-columns: repeat(8, 1fr);
 }
 
 .simon {
@@ -48,7 +72,7 @@ body {
 }
 
 .simSize4 {
-    transform: scale(0.8);
+    transform: scale(0.9);
 }
 
 .simSize8 {
@@ -56,11 +80,11 @@ body {
 }
 
 .simSize16 {
-    transform: scale(0.4);
+    transform: scale(0.5);
 }
 
 .simSize32 {
-    transform: scale(0.2);
+    transform: scale(0.3);
 }
 
 .cube {
