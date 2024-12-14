@@ -1,18 +1,26 @@
 
 export class Simon {
 
-    parent
+    #parent
+    #validated
+    #failed
 
     /**
      * Create a new Simon in the specified parent
      * @param {HTMLDivElement} parent
-     * @param row
-     * @param column
      */
-    constructor(parent, row, column) {
-        this.parent = parent;
-        this.parent.style.row = row;
-        this.parent.style.column = column;
+    constructor(parent) {
+        this.#parent = parent;
+        this.#validated = false;
+        this.#failed = false;
+    }
+
+    get isValidated() {
+        return this.#validated
+    }
+
+    get isFailed() {
+        return this.#failed
     }
 
     /**
@@ -20,7 +28,7 @@ export class Simon {
      * @returns {HTMLDivElement}
      */
     get e0() {
-        return this.#getElement('e0');
+        return this.#parent.getElementsByClassName('e0')[0];
     }
 
     /**
@@ -28,7 +36,7 @@ export class Simon {
      * @returns {HTMLDivElement}
      */
     get e1() {
-        return this.#getElement('e1');
+        return this.#getChoiceElement('e1');
     }
 
     /**
@@ -36,7 +44,7 @@ export class Simon {
      * @returns {HTMLDivElement}
      */
     get e2() {
-        return this.#getElement('e2');
+        return this.#getChoiceElement('e2');
     }
 
     /**
@@ -44,7 +52,7 @@ export class Simon {
      * @returns {HTMLDivElement}
      */
     get e3() {
-        return this.#getElement('e3');
+        return this.#getChoiceElement('e3');
     }
 
     /**
@@ -52,7 +60,15 @@ export class Simon {
      * @returns {HTMLDivElement}
      */
     get e4() {
-        return this.#getElement('e4');
+        return this.#getChoiceElement('e4');
+    }
+
+    #validate() {
+        this.#validated = true;
+    }
+
+    #fail() {
+        this.#failed = true;
     }
 
     /**
@@ -60,8 +76,14 @@ export class Simon {
      * @param name
      * @returns {Element}
      */
-    #getElement(name) {
-        return this.parent.getElementsByClassName(name)[0];
+    #getChoiceElement(name) {
+        return this.#parent.getElementsByClassName(name)[0]
+    }
+
+    #setChoiceElementColor(choiceElement, color) {
+        choiceElement.style.backgroundColor = color
+        //choiceElement[0].style.backgroundColor = color
+        //choiceElement[1].style.backgroundColor = color
     }
 
     /**
@@ -72,10 +94,10 @@ export class Simon {
     #setElementColor(name, color) {
         switch (name) {
             case 'e0': this.e0.style.backgroundColor = color; break;
-            case 'e1': this.e1.style.backgroundColor = color; break;
-            case 'e2': this.e2.style.backgroundColor = color; break;
-            case 'e3': this.e3.style.backgroundColor = color; break;
-            case 'e4': this.e4.style.backgroundColor = color; break;
+            case 'e1': this.#setChoiceElementColor(this.e1, color); break;
+            case 'e2': this.#setChoiceElementColor(this.e2, color); break;
+            case 'e3': this.#setChoiceElementColor(this.e3, color); break;
+            case 'e4': this.#setChoiceElementColor(this.e4, color); break;
         }
     }
 
@@ -94,7 +116,7 @@ export class Simon {
      * @param choice
      * @param color
      */
-    setChoiceColor(choice, color) {
+    #setChoiceColor(choice, color) {
         this.#setElementColor('e0', color);
         this.#setElementColor(choice, color);
     }
@@ -102,15 +124,23 @@ export class Simon {
     /**
      * Set the choice
      * @param choice
-     * @param successCallback
-     * @param failCallback
+     * @param color
+     * @param colors
      */
-    setChoice(choice, successCallback, failCallback) {
+    setChoice(choice, color, colors) {
 
-        this.#getElement(choice).onclick = successCallback;
+        this.#setCallbacks(choice);
+        this.#setChoiceColor(choice, color);
+        this.#setOtherColors(choice, colors);
+    }
 
-        const setOthers = element => this.#getElement(element).onclick = failCallback;
+    #setCallbacks(choice) {
+
+        this.#getChoiceElement(choice).onclick = this.#validate;
+
+        const setOthers = element => this.#getChoiceElement(element).onclick = this.#fail;
         this.#getOthers(choice).forEach(setOthers);
+
     }
 
     /**
@@ -118,7 +148,7 @@ export class Simon {
      * @param choice
      * @param colors
      */
-    setOtherColors(choice, colors) {
+    #setOtherColors(choice, colors) {
         const setColor = (element, index) => this.#setElementColor(element, colors[index])
         this.#getOthers(choice).forEach(setColor);
     }
@@ -127,16 +157,21 @@ export class Simon {
      * Remove the simon
      */
     remove() {
-        this.parent.removeChild(this.#getElement('simon'));
+        this.#parent.removeChild(this.#getChoiceElement('simon'));
     }
 
     /**
      * Remove the simon
      */
-    clone(row, column) {
-        parent = this.parent.cloneNode(true)
+    clone() {
+        parent = this.#parent.cloneNode(true)
         document.body.appendChild(parent);
-        return new Simon(parent, row, column);
+        return new Simon(parent);
+    }
+
+    reset() {
+        this.#validated = false
+        this.#failed = false
     }
 
 }
