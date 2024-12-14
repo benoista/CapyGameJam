@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="index.js"></script>
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
@@ -24,10 +23,18 @@
 
         </div>
 
+        <audio id="audio-element" src="sound.mp3" loop></audio>
+        <div class="volume-control" style="display: none;">
+            <label for="volume-slider">Volume:</label>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+            <span id="volume-value">50%</span>
+        </div>
+
+        <button id="play-pause">Play</button>
 
 
 
-        <script src="index.js"></script>
+        <script src="sound.js"></script>
 
     </div>
 
