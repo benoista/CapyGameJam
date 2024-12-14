@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Borel&family=Kavoon&family=Noto+Sans+KR:wght@100..900&family=Orbitron:wght@400..900&family=Rubik+Bubbles&family=Sarina&family=Shantell+Sans:ital,wght,BNCE@0,300..800,-43;1,300..800,-43&family=Silkscreen:wght@400;700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background:url('pic/back-option.png');
+    overflow: hidden;
+    background-size: cover;
+    background-size: 100%;
+}
+
+.check {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 18rem;
+    margin-left: 28rem;
+}
+
+input {
+    margin: 3.2rem;
+}
+
+input[type="checkbox"] {
+    transform: scale(2.5);
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.volume-control {
+    margin-top: 13rem;
+    display: flex;
+    font-family: "Kavoon", serif;
+    color:#8eeb64;
+    font-size: 2.5rem;
+    font-weight: 500;
+    position: absolute;
+    margin-left: 26.5rem;
+}
+
+
+
+#volume-value {
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+#volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 270px;
+    height: 12px;
+    background: #5d5eaa;
+    border-radius: 10px;
+    outline: none;
+    position: relative;
+
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #8eeb64;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    top: -4px;
+}
+
+#volume-slider::-webkit-slider-runnable-track {
+    height: 12px;
+    background: #5d5eaa;
+    border-radius: 10px;
+}
+
+.nav {
+    position: absolute;
+    top: 35.5rem;
+    left:20rem;
+    width: 900px;
+    height: 87px;
+    background-color: transparent;
+}
+
+.nav a {
+    text-align: center;
+    text-justify: center;
+    font-size: 5rem;
+    color:transparent;
+}

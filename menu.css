@@ -1,0 +1,39 @@
+body{
+    background:url("pic/background.png");
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+    background-size: 100%;
+}
+
+
+
+.content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 22rem;
+    margin-left: 40rem;
+}
+
+.content button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.content button img {
+    height: 9rem;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.play button img:hover {
+    content: url('pic/play-hover.png');
+}
+
+.option button img:hover {
+    content: url('pic/option-hover.png');
+}
