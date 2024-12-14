@@ -6,8 +6,8 @@
     <script type="module" src="scripts/game.js"></script>
     <title>Futuristic Simon Game</title>
     <style>        :root {
-        --shadow-color: #0d633f;
-        --border-color: #0d63ea;
+        --shadow-color: #0cff2c;
+        --border-color: #F22121FF;
     }
 
     body {
@@ -21,14 +21,44 @@
         gap: 15px;
     }
 
+    .grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+    }
+
     .simon {
         position: relative;
-        width: 300px;
-        height: 300px;
+        width: 330px;
+        height: 330px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         gap: 15px;
+    }
+
+    .simSize1 {
+        transform: scale(1);
+    }
+
+    .simSize {
+        transform: scale(0.9);
+    }
+
+    .simSize4 {
+        transform: scale(0.8);
+    }
+
+    .simSize8 {
+        transform: scale(0.7);
+    }
+
+    .simSize16 {
+        transform: scale(0.4);
+    }
+
+    .simSize32 {
+        transform: scale(0.2);
     }
 
     .cube {
@@ -103,13 +133,15 @@
     }    </style>
 </head>
 <body>
-<div class="simon">
-    <div class="cube e1"></div>
-    <div class="cube e2"></div>
-    <div class="cube e3"></div>
-    <div class="cube e4"></div>
-    <div class="e0"></div>
-    <div class="center-hide"></div>
+<div class="grid size1">
+    <div class="simon simSize1">
+        <div class="cube e1"></div>
+        <div class="cube e2"></div>
+        <div class="cube e3"></div>
+        <div class="cube e4"></div>
+        <div class="e0"></div>
+        <div class="center-hide"></div>
+    </div>
 </div>
 <button id="play">Start</button>
 </body>

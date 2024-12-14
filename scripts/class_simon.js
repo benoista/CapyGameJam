@@ -23,6 +23,10 @@ export class Simon {
         return this.#failed
     }
 
+    get parent() {
+        return this.#parent
+    }
+
     /**
      * The center element
      * @returns {HTMLDivElement}
@@ -64,13 +68,11 @@ export class Simon {
     }
 
     #validate() {
-        console.log(this);
         this.#validated = true;
         this.#setAllColor('rgb(67, 242, 33)');
     }
 
     #fail() {
-        console.log(this);
         this.#failed = true;
         this.#setAllColor('rgb(235, 40, 40)');
     }
