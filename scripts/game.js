@@ -1,38 +1,19 @@
 
 import {Simon} from "./class_simon.js";
 import {Colors} from "./colors.js"
-import {player} from "/scripts/audio.js"
-import * as Tone from "tone";
-
-const POS = [
-    [0, 0],
-    [1, 0],
-    [0, 1],
-    [1, 1],
-    [2, 0],
-    [3, 0],
-    [2, 1],
-    [3, 1],
-    [0, 2],
-    [1, 2],
-    [0, 3],
-    [1, 3],
-    [2, 2],
-    [3, 2],
-    [2, 3],
-    [3, 3],
-]
-
-
+import {Player, PLAYERS} from "/scripts/audio.js"
 
 
 class Game {
-    static DIFFICULTY = 4;
-    static TIME = 659 * this.DIFFICULTY
-    static SCORE = 0
-    static LEVEL = 0
-    static DALTONISME = localStorage.getItem("dalto");
-    static SIMONS = []
+    static DIFFICULTY = 0;
+    static MULTIPLIER = 0.1;
+    static COLOR_MULT = 40;
+    static DALTONISME = false
+    static score = 0
+    static level = 0
+    static simons = []
+    static loop = null
+    static PLAYER = new Player();
 }
 
 function generateChoice() {
@@ -40,17 +21,18 @@ function generateChoice() {
 }
 
 function generateOtherColors(color) {
+    console.log(1000 * Game.DIFFICULTY)
     return [
-        Colors.generateColorVariation(color, 20 * Game.DIFFICULTY),
-        Colors.generateColorVariation(color, 20 * Game.DIFFICULTY),
-        Colors.generateColorVariation(color, 20 * Game.DIFFICULTY)
+        Colors.generateColorVariation(color, Game.COLOR_MULT * (1 - Game.DIFFICULTY)),
+        Colors.generateColorVariation(color, Game.COLOR_MULT * (1 - Game.DIFFICULTY)),
+        Colors.generateColorVariation(color, Game.COLOR_MULT * (1 - Game.DIFFICULTY))
     ]
 }
 function generateOtherColorsDaltonism(color) {
     return [
-        Colors.generateColorVariationDaltonism(color, 20 * Game.DIFFICULTY),
-        Colors.generateColorVariationDaltonism(color, 20 * Game.DIFFICULTY),
-        Colors.generateColorVariationDaltonism(color, 20 * Game.DIFFICULTY)
+        Colors.generateColorVariationDaltonism(color, Game.COLOR_MULT * (1 - Game.DIFFICULTY)),
+        Colors.generateColorVariationDaltonism(color, Game.COLOR_MULT * (1 - Game.DIFFICULTY)),
+        Colors.generateColorVariationDaltonism(color, Game.COLOR_MULT * (1 - Game.DIFFICULTY))
     ]
 }
 
@@ -69,7 +51,7 @@ function update() {
     setAnimColor(color)
 
     const setChoice = simon => simon.setChoice(generateChoice(), color, otherColors)
-    Game.SIMONS.forEach(setChoice)
+    Game.simons.forEach(setChoice)
 }
 
 function setAnimColor(color) {
@@ -79,31 +61,53 @@ function setAnimColor(color) {
 }
 
 function split() {
-    let length = Game.SIMONS.length
+
+    addSimons()
+
+    Game.level++
+    Game.DIFFICULTY = 0
+
+    Game.simons.forEach(resizeSimon);
+
+    resizeGrid()
+
+    startMusic()
+    resetInterval()
+}
+
+function addSimons() {
+    let length = Game.simons.length
     for (let i = 0; i < length; i++) {
-        Game.SIMONS.push(Game.SIMONS[0].clone())
+        Game.simons.push(Game.simons[0].clone())
     }
-    Game.LEVEL++
-    Game.SIMONS.forEach(resizeSimon);
+}
+
+
+function resizeGrid() {
     document.getElementsByClassName('grid')[0].classList.remove('size' + getCount(-1))
     document.getElementsByClassName('grid')[0].classList.add('size' + getCount())
 }
 
 function allValidated() {
     const isValidated = simon => simon.isValidated
-    return Game.SIMONS.every(isValidated)
+    return Game.simons.every(isValidated)
 }
 
 function anyFailed() {
     const isFailed = simon => simon.isFailed
-    return Game.SIMONS.some(isFailed)
+    return Game.simons.some(isFailed)
 }
 
 function loop() {
 
-    if (allValidated()) Game.SCORE++
+    if (allValidated()) {
+        Game.score++
+        Game.DIFFICULTY += Game.MULTIPLIER
+        resetInterval()
+        Game.PLAYER.setRate(0.8 + Game.DIFFICULTY)
+    }
     else if (anyFailed()) split()
-    else Game.SCORE--
+    else Game.score--
 
     reset()
     update()
@@ -111,26 +115,30 @@ function loop() {
 
 function reset() {
     const reset = simon => simon.reset()
-    Game.SIMONS.forEach(reset)
+    Game.simons.forEach(reset)
 }
 
 function setFirst() {
     const simonElement = document.getElementsByClassName('simon')[0]
-    Game.SIMONS.push(new Simon(simonElement, 0, 0))
+    Game.simons.push(new Simon(simonElement, 0, 0))
 }
 
 function start() {
     document.getElementById('play')?.remove()
     setFirst()
     update()
-    setTimeout(startMusic, 900)
-    setInterval(loop, Game.TIME)
+    setTimeout(startMusic, 0)
+    resetInterval()
 }
 
-async function startMusic() {
-    await Tone.start();
-    player.playbackRate = 2 / Game.DIFFICULTY
-    player.toDestination().start();
+function startMusic() {
+    Game.PLAYER.play(Game.level)
+    Game.PLAYER.setRate(0.8 + Game.DIFFICULTY)
+}
+
+function resetInterval() {
+    clearInterval(Game.loop)
+    Game.loop = setInterval(loop, Game.PLAYER.BEAT * 2 * (2 - (0.8 + Game.DIFFICULTY)))
 }
 
 function resizeSimon(simon) {
@@ -140,14 +148,11 @@ function resizeSimon(simon) {
 
 function displayScore() {
     const scoreElement = document.querySelector('.score')
-    scoreElement.textContent = "Your score : " + Game.SCORE.toString()
+    scoreElement.textContent = Game.score.toString()
 }
 
 function getCount(n=0) {
-    return Math.pow(2, (Game.LEVEL + n))
+    return Math.pow(2, (Game.level + n))
 }
 
 document.getElementById('play')?.addEventListener('click', start);
-
-
-
