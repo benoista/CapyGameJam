@@ -49,7 +49,6 @@ export class Colors {
         'rgb(86, 180, 233)',  // Sky Blue
         'rgb(204, 121, 167)', // Reddish Purple
         'rgb(240, 228, 66)',  // Yellow
-        'rgb(0, 0, 0)'        // Black
     ];
 
 

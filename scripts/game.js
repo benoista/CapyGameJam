@@ -9,7 +9,7 @@ class Game {
     static MULTIPLIER = 0.01
     static BASE_DIFFICULTY = 0.8
     static COLOR_MULT = 40
-    static DALTONISME = false
+    static DALTONISME = localStorage.getItem("dalto");
     static PLAYER = new Player();
     static score = 0
     static level = 0
