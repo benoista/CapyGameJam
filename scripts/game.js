@@ -73,9 +73,9 @@ function split() {
 
     Game.DIFFICULTY = 0
 
-    resetInterval()
-
     Game.level++
+
+    resetInterval()
 
     startMusic()
 
