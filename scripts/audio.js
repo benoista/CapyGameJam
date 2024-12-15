@@ -13,7 +13,7 @@ export const PLAYERS = [
 
 export class Player {
 
-    BEAT = 659;
+    BEAT = 750;
 
     #player = null
 

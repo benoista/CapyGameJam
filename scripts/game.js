@@ -5,15 +5,17 @@ import {Player, PLAYERS} from "/scripts/audio.js"
 
 
 class Game {
-    static DIFFICULTY = 0;
-    static MULTIPLIER = 0.1;
-    static COLOR_MULT = 40;
+    static DIFFICULTY = 0
+    static MULTIPLIER = 0.01
+    static BASE_DIFFICULTY = 0.8
+    static COLOR_MULT = 40
     static DALTONISME = false
+    static PLAYER = new Player();
     static score = 0
     static level = 0
     static simons = []
     static loop = null
-    static PLAYER = new Player();
+    static preloop = null
 }
 
 function generateChoice() {
@@ -57,7 +59,7 @@ function update() {
 function setAnimColor(color) {
     const root = document.querySelector(':root')
     root.style.setProperty('--shadow-color', color);
-    //root.style.setProperty('--border-color', Colors.editColor(color, 150));
+    root.style.setProperty('--border-color', Colors.editColor(color, 30));
 }
 
 function split() {
@@ -104,7 +106,7 @@ function loop() {
         Game.score++
         Game.DIFFICULTY += Game.MULTIPLIER
         resetInterval()
-        Game.PLAYER.setRate(0.8 + Game.DIFFICULTY)
+        Game.PLAYER.setRate(Game.BASE_DIFFICULTY + Game.DIFFICULTY)
     }
     else if (anyFailed()) split()
     else Game.score--
@@ -125,7 +127,7 @@ function setFirst() {
 
 function start() {
     document.getElementById('play')?.remove()
-    setFirst()
+    clearInterval(Game.preloop)
     update()
     setTimeout(startMusic, 0)
     resetInterval()
@@ -133,12 +135,12 @@ function start() {
 
 function startMusic() {
     Game.PLAYER.play(Game.level)
-    Game.PLAYER.setRate(0.8 + Game.DIFFICULTY)
+    Game.PLAYER.setRate(Game.BASE_DIFFICULTY + Game.DIFFICULTY)
 }
 
 function resetInterval() {
     clearInterval(Game.loop)
-    Game.loop = setInterval(loop, Game.PLAYER.BEAT * 2 * (2 - (0.8 + Game.DIFFICULTY)))
+    Game.loop = setInterval(loop, Game.PLAYER.BEAT * 2 * (Game.level + 1) * (2 - (Game.BASE_DIFFICULTY + Game.DIFFICULTY)))
 }
 
 function resizeSimon(simon) {
@@ -155,4 +157,16 @@ function getCount(n=0) {
     return Math.pow(2, (Game.level + n))
 }
 
+function preloop() {
+    Game.simons[0].setElementColor(generateChoice(), Colors.generateRandomColor())
+}
+
 document.getElementById('play')?.addEventListener('click', start);
+
+setFirst()
+Game.simons[0].setElementColor('e1', Colors.generateRandomColor())
+Game.simons[0].setElementColor('e2', Colors.generateRandomColor())
+Game.simons[0].setElementColor('e3', Colors.generateRandomColor())
+Game.simons[0].setElementColor('e4', Colors.generateRandomColor())
+
+Game.preloop = setInterval(preloop, 1000);

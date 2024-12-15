@@ -95,11 +95,11 @@ export class Simon {
     }
 
     #setAllColor(color) {
-        this.#setElementColor('e0', color);
-        this.#setElementColor('e1', color);
-        this.#setElementColor('e2', color);
-        this.#setElementColor('e3', color);
-        this.#setElementColor('e4', color);
+        this.setElementColor('e0', color);
+        this.setElementColor('e1', color);
+        this.setElementColor('e2', color);
+        this.setElementColor('e3', color);
+        this.setElementColor('e4', color);
     }
 
     /**
@@ -107,7 +107,7 @@ export class Simon {
      * @param name
      * @param color
      */
-    #setElementColor(name, color) {
+    setElementColor(name, color) {
         switch (name) {
             case 'e0': this.e0.style.backgroundColor = color; break;
             case 'e1': this.#setChoiceElementColor(this.e1, color); break;
@@ -133,8 +133,8 @@ export class Simon {
      * @param color
      */
     #setChoiceColor(choice, color) {
-        this.#setElementColor('e0', color);
-        this.#setElementColor(choice, color);
+        this.setElementColor('e0', color);
+        this.setElementColor(choice, color);
     }
 
     /**
@@ -165,7 +165,7 @@ export class Simon {
      * @param colors
      */
     #setOtherColors(choice, colors) {
-        const setColor = (element, index) => this.#setElementColor(element, colors[index])
+        const setColor = (element, index) => this.setElementColor(element, colors[index])
         this.#getOthers(choice).forEach(setColor);
     }
 
