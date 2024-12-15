@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background: #2c3e50;
+    color: white;
+}
+
+#disco-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background: #e74c3c;
+    color: white;
+    cursor: pointer;
+}
+
+#capybara-container {
+    margin-top: 20px;
+    perspective: 1000px;
+}
+
+.capybara {
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(to right, #e74c3c, #8e44ad, #3498db);
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 3s infinite linear;
+}
+
+.capybara::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: #f1c40f;
+    position: absolute;
+    top: -20px;
+    left: 35px;
+    border-radius: 50%;
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes rotate {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes disco {
+    0% { background: #e74c3c; }
+    25% { background: #8e44ad; }
+    50% { background: #3498db; }
+    75% { background: #f1c40f; }
+    100% { background: #e74c3c; }
+}
+
+.capybara {
+    animation: rotate 3s infinite linear, disco 1s infinite;
+}
