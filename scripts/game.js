@@ -175,6 +175,7 @@ function endGame() {
     Game.DIFFICULTY = 0.2
     startMusic()
     clearInterval(Game.loop)
+    document.location.href="index.html"
 }
 
 document.getElementById('play')?.addEventListener('click', start);
