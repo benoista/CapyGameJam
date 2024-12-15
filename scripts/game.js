@@ -31,7 +31,7 @@ class Game {
     static TIME = 659 * this.DIFFICULTY
     static SCORE = 0
     static LEVEL = 0
-    static DALTONISME = false
+    static DALTONISME = localStorage.getItem("dalto");
     static SIMONS = []
 }
 
@@ -148,3 +148,6 @@ function getCount(n=0) {
 }
 
 document.getElementById('play')?.addEventListener('click', start);
+
+
+
