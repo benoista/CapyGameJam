@@ -38,7 +38,7 @@ function generateOtherColorsDaltonism(color) {
 
 function update() {
 
-    //displayScore()
+    displayScore()
 
     let color = Colors.generateRandomColor()
     let otherColors = generateOtherColors(color)

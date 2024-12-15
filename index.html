@@ -2,23 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="scripts/game.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Futuristic Simon Game</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="styles/menu.css">
 </head>
 <body>
-<div class="score"></div>
-<div class="grid size1">
-    <div class="simon simSize1">
-        <div class="cube e1"></div>
-        <div class="cube e2"></div>
-        <div class="cube e3"></div>
-        <div class="cube e4"></div>
-        <div class="e0"></div>
-        <div class="center-hide"></div>
-        <button id="play">Go</button>
+    <div class="content">
+
+        <div class="play">
+            <a href="game.html">
+                <button class="button play">
+                    <img src="pic/play.png" alt="Bouton">
+                </button>
+            </a>
+        </div>
+
+        <div class="option">
+            <a href="option.html">
+                <button class="button options">
+                    <img src="pic/option.png" alt="Bouton">
+                </button>
+            </a>
+        </div>
+
+        <audio id="audio-element" src="sound.mp3" loop></audio>
+        <div class="volume-control" style="display: none;">
+            <label for="volume-slider">Volume:</label>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+            <span id="volume-value">50%</span>
+        </div>
+
+        <button id="play-pause">Play</button>
+
+
+        <script type="module" src="scripts/game.js"></script>
+        <script src="scripts/sound.js"></script>
+
     </div>
-</div>
+
 </body>
 </html>
