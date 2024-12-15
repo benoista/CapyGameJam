@@ -47,19 +47,9 @@ body {
 }
 
 .size16 {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(150px, 1fr));
-    grid-auto-rows: 200px;
-    align-items: start;
+    grid-template-columns: repeat(4, 1fr);
     gap: 0px;
 }
-
-.size16 > * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 
 .size32{
     grid-template-columns: repeat(8, 150px);
@@ -74,8 +64,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 1px; /*--TEST--*/
-    border: 5px solid orangered; /*--TEST--*/
 }
 
 .simSize1 {
