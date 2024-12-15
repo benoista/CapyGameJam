@@ -2,6 +2,7 @@
 import {Simon} from "./class_simon.js";
 import {Colors} from "./colors.js"
 import {Player, PLAYERS} from "/scripts/audio.js"
+import * as Tone from 'tone';
 
 
 class Game {
@@ -66,15 +67,21 @@ function split() {
 
     addSimons()
 
-    Game.level++
+    if (Game.level === 6) {
+        endGame(); return
+    }
+
     Game.DIFFICULTY = 0
+
+    Game.level++
+
+    resetInterval()
+
+    startMusic()
 
     Game.simons.forEach(resizeSimon);
 
     resizeGrid()
-
-    startMusic()
-    resetInterval()
 }
 
 function addSimons() {
@@ -129,8 +136,11 @@ function start() {
     document.getElementById('play')?.remove()
     clearInterval(Game.preloop)
     update()
-    setTimeout(startMusic, 0)
+    setTimeout(startMusic, 500)
     resetInterval()
+    if (localStorage.getItem("hardmode")) {
+        Game.MULTIPLIER = 0.03
+    }
 }
 
 function startMusic() {
@@ -140,7 +150,7 @@ function startMusic() {
 
 function resetInterval() {
     clearInterval(Game.loop)
-    Game.loop = setInterval(loop, Game.PLAYER.BEAT * 2 * (Game.level + 1) * (2 - (Game.BASE_DIFFICULTY + Game.DIFFICULTY)))
+    Game.loop = setInterval(loop, Game.PLAYER.BEAT * (Game.level + 1) * (2 - (Game.BASE_DIFFICULTY + Game.DIFFICULTY)))
 }
 
 function resizeSimon(simon) {
@@ -159,6 +169,12 @@ function getCount(n=0) {
 
 function preloop() {
     Game.simons[0].setElementColor(generateChoice(), Colors.generateRandomColor())
+}
+
+function endGame() {
+    Game.DIFFICULTY = 0.2
+    startMusic()
+    clearInterval(Game.loop)
 }
 
 document.getElementById('play')?.addEventListener('click', start);
