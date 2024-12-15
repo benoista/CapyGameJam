@@ -8,7 +8,7 @@ class Game {
     static DIFFICULTY = 0;
     static MULTIPLIER = 0.1;
     static COLOR_MULT = 40;
-    static DALTONISME = false
+    static DALTONISME = localStorage.getItem("dalto");
     static score = 0
     static level = 0
     static simons = []

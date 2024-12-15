@@ -23,8 +23,9 @@ export class Player {
 
     play(level) {
         if (this.#player !== null) this.#player.stop()
-        this.#player = PLAYERS[level];
-        this.#player.toDestination().start()
+        this.#player = PLAYERS[level].toDestination();
+        this.#player.start()
+        this.#player.volume.value = (1-(localStorage.getItem("volume") / 100)) * -40;
     }
 
     setRate(value) {
