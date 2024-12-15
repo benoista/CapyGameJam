@@ -1,6 +1,6 @@
 :root {
-    --shadow-color: #0cff2c;
-    --border-color: #F22121FF;
+    --shadow-color: #666666;
+    --border-color: #888888;
 }
 
 body {
@@ -200,5 +200,89 @@ button {
     100% {
         box-shadow: 0 0 15px var(--shadow-color), 0 0 30px var(--shadow-color);
         transform: rotate(360deg);
+    }
+}
+
+.rainbow {
+    animation: birthday 0.675s infinite;
+}
+
+@keyframes birthday {
+    0% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f),
+        color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2),
+        color-stop(0.9, #ff2), color-stop(1, #f22));
+        background-image: linear-gradient(to right,
+        #f22 0%, #f2f 15%, #22f 30%, #2ff 45%, #2f2 60%, #2f2 75%, #ff2 90%, #f22 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+    16% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #ff2), color-stop(0.15, #f22), color-stop(0.3, #f2f),
+        color-stop(0.45, #22f), color-stop(0.6, #2ff), color-stop(0.75, #2ff),
+        color-stop(0.9, #2f2), color-stop(1, #ff2));
+        background-image: linear-gradient(to right,
+        #ff2 0%, #f22 15%, #f2f 30%, #22f 45%, #2ff 60%, #2ff 75%, #2f2 90%, #ff2 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+    33% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #2f2), color-stop(0.15, #ff2), color-stop(0.3, #f22),
+        color-stop(0.45, #f2f), color-stop(0.6, #22f), color-stop(0.75, #22f),
+        color-stop(0.9, #2ff), color-stop(1, #2f2));
+        background-image: linear-gradient(to right,
+        #2f2 0%, #ff2 15%, #f22 30%, #f2f 45%, #22f 60%, #22f 75%, #2ff 90%, #2f2 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+    50% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #2ff), color-stop(0.15, #2f2), color-stop(0.3, #ff2),
+        color-stop(0.45, #f22), color-stop(0.6, #f2f), color-stop(0.75, #f2f),
+        color-stop(0.9, #22f), color-stop(1, #2ff));
+        background-image: linear-gradient(to right,
+        #2ff 0%, #2f2 15%, #ff2 30%, #f22 45%, #f2f 60%, #f2f 75%, #22f 90%, #2ff 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+    66% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #22f), color-stop(0.15, #2ff), color-stop(0.3, #2f2),
+        color-stop(0.45, #ff2), color-stop(0.6, #f22), color-stop(0.75, #f22),
+        color-stop(0.9, #f2f), color-stop(1, #22f));
+        background-image: linear-gradient(to right,
+        #22f 0%, #2ff 15%, #2f2 30%, #ff2 45%, #f22 60%, #f22 75%, #f2f 90%, #22f 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+    83% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #f2f), color-stop(0.15, #22f), color-stop(0.3, #2ff),
+        color-stop(0.45, #2f2), color-stop(0.6, #ff2), color-stop(0.75, #ff2),
+        color-stop(0.9, #f22), color-stop(1, #f2f));
+        background-image: linear-gradient(to right,
+        #f2f 0%, #22f 15%, #2ff 30%, #2f2 45%, #ff2 60%, #ff2 75%, #f22 90%, #f2f 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+    100% {
+        background-image: -webkit-gradient(linear, left top, right top,
+        color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f),
+        color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2),
+        color-stop(0.9, #ff2), color-stop(1, #f22));
+        background-image: linear-gradient(to right,
+        #f22 0%, #f2f 15%, #22f 30%, #2ff 45%, #2f2 60%, #2f2 75%, #ff2 90%, #f22 100%);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
     }
 }
