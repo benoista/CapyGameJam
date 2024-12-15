@@ -8,7 +8,7 @@ export const PLAYERS = [
     new Tone.Player({url: "/audio/musics/level"+ 8 +".wav", loop: true}),
     new Tone.Player({url: "/audio/musics/level"+ 16 +".wav", loop: true}),
     new Tone.Player({url: "/audio/musics/level"+ 32 +".wav", loop: true}),
-    new Tone.Player({url: "/audio/musics/level"+ 64 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 64 +".wav"}),
 ]
 
 export class Player {

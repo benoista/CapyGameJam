@@ -67,15 +67,21 @@ function split() {
 
     addSimons()
 
-    Game.level++
+    if (Game.level === 6) {
+        endGame(); return
+    }
+
     Game.DIFFICULTY = 0
+
+    resetInterval()
+
+    Game.level++
+
+    startMusic()
 
     Game.simons.forEach(resizeSimon);
 
     resizeGrid()
-
-    startMusic()
-    resetInterval()
 }
 
 function addSimons() {
@@ -160,6 +166,12 @@ function getCount(n=0) {
 
 function preloop() {
     Game.simons[0].setElementColor(generateChoice(), Colors.generateRandomColor())
+}
+
+function endGame() {
+    Game.DIFFICULTY = 0.2
+    startMusic()
+    clearInterval(Game.loop)
 }
 
 document.getElementById('play')?.addEventListener('click', start);
