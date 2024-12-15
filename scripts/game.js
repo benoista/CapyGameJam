@@ -131,6 +131,9 @@ function start() {
     update()
     setTimeout(startMusic, 0)
     resetInterval()
+    if (localStorage.getItem("hardmode")) {
+        Game.MULTIPLIER = 0.03
+    }
 }
 
 function startMusic() {
