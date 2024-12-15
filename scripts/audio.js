@@ -1,33 +1,36 @@
 import * as Tone from 'tone';
 
 
-export const player = new Tone.Player({
-    url: "/audio/music.mp3",
-    loop: true,
-    autostart: true,
-});
+export const PLAYERS = [
+    new Tone.Player({url: "/audio/musics/level"+ 1 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 2 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 4 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 8 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 16 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 32 +".wav", loop: true}),
+    new Tone.Player({url: "/audio/musics/level"+ 64 +".wav", loop: true}),
+]
 
-export function increasePlaybackRate(value) {
-    player.playbackRate += value;
+export class Player {
+
+    BEAT = 659;
+
+    #player = null
+
+    constructor() {
+        this.#player = new Tone.Player();
+    }
+
+    play(level) {
+        if (this.#player !== null) this.#player.stop()
+        this.#player = PLAYERS[level];
+        this.#player.toDestination().start()
+    }
+
+    setRate(value) {
+        this.#player.playbackRate = value;
+    }
+
 }
-
-export function decreasePlaybackRate(value) {
-    player.playbackRate -= value;
-}
-
-export function resetPlaybackRate() {
-    player.playbackRate = 1;
-}
-
-export function setVolume(volume) {
-    player.volume.value = volume;
-}
-
-export function playClicked() {
-    player.start();
-}
-
-
-
 
 
