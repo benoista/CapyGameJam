@@ -77,8 +77,8 @@ input[type="checkbox"] {
 
 .nav {
     position: absolute;
-    top: 35.5rem;
-    left:20rem;
+    top: 48rem;
+    left:33rem;
     width: 900px;
     height: 87px;
     background-color: #f4f1f9;
@@ -86,7 +86,7 @@ input[type="checkbox"] {
 
 .nav a {
     text-align: center;
-    margin-left: 20rem;
+    margin-left: 18rem;
     font-size: 5rem;
     color:black;
     font-family: "Kavoon", serif;

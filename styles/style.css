@@ -286,3 +286,14 @@ button {
         -webkit-background-clip: text;
     }
 }
+
+.button-bonus {
+    position:absolute;;
+    top:40rem;
+    left:92rem;
+}
+
+.button-bonus img{
+    width:9rem;
+    height: auto;
+}

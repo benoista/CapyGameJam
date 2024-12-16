@@ -12,8 +12,8 @@ body{
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-top: 22rem;
-    margin-left: 40rem;
+    margin-top: 25rem;
+    margin-left: 50rem;
 }
 
 .content button {
