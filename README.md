@@ -20,7 +20,7 @@ This game was created in less than **48h**. Inspired by the Simon game, it's a g
 ## Installation
 
 ### Prerequisites
-You can play it on Web : https://alexandrebenoist.fr/gamejame   
+You can play it on Web :[ https://alexandrebenoist.fr/gamejame   ](https://alexandrebenoist.fr/gamejam/)
 
 ### Installation Steps
 1. Clone the repository:  
